@@ -2,140 +2,150 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Instructional Design Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { 
-  font-family: system-ui, Arial, sans-serif; 
-  margin: 0; 
-  background: #f7f7f7; 
-  color: #222222; /* body text = charcoal */
-  line-height: 1.5; 
-}
+    :root{
+      --navy:#003366;
+      --charcoal:#222222;
+      --gray:#666666;
+      --surface:#ffffff;
+      --border:#e6e6e6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      color:var(--charcoal);
+      background:#f8f9fb;
+    }
+    header{
+      padding:32px 20px 16px;
+      text-align:center;
+      border-bottom:1px solid var(--border);
+      background:#fff;
+    }
+    header h1{margin:0 0 6px;font-size:1.9rem;color:var(--navy);}
+    header p{margin:0;color:var(--gray);}
+    main{padding:28px 20px 60px;max-width:1200px;margin:0 auto;}
 
-header { 
-  background:#003366; /* navy header */
-  color:#fff; 
-  padding:28px 16px; 
-}
+    /* Grid */
+    .grid{display:grid;gap:20px;grid-template-columns:repeat(4,minmax(0,1fr));}
+    @media (max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr;}}
 
-header h1 { 
-  margin:0 0 4px 0; 
-  font-size:1.75rem; 
-}
+    /* Card */
+    .card{
+      background:var(--surface);border:1px solid var(--border);border-radius:16px;
+      overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04);
+      transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease;
+    }
+    .card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.10);}
 
-header p { 
-  margin:0; 
-  color:#d9e2ef; /* softer gray-blue under header */
-}
+    /* Thumbnail with overlay */
+    .thumb-link{display:block;position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;text-decoration:none;}
+    .thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;}
+    .overlay{
+      position:absolute;inset:0;background:rgba(0,0,0,.5);
+      color:#fff;display:flex;align-items:center;justify-content:center;
+      opacity:0;transition:opacity .3s ease;font-size:1.2rem;font-weight:700;text-align:center;padding:0 10px;
+    }
+    .thumb-link:hover .thumb, .thumb-link:focus .thumb{transform:scale(1.05);}
+    .thumb-link:hover .overlay, .thumb-link:focus .overlay{opacity:1;}
 
-main { 
-  max-width: 1100px; 
-  margin: 24px auto; 
-  padding: 0 16px 48px; 
-}
+    .content{padding:16px;}
+    .title{margin:0 0 6px;font-weight:700;font-size:1.05rem;color:var(--charcoal);}
+    .desc{margin:0 0 14px;font-size:.98rem;color:var(--charcoal);}
+    .actions{display:flex;gap:10px;}
+    .btn{
+      display:inline-block;text-align:center;padding:10px 12px;border-radius:10px;
+      border:1px solid var(--navy);text-decoration:none;font-weight:600;font-size:.95rem;
+      flex:1;transition:background .12s ease,color .12s ease,border-color .12s ease;
+    }
+    .btn.primary{background:var(--navy);color:#fff;}
+    .btn.primary:hover,.btn.primary:focus{background:#032a57;border-color:#032a57;}
 
-.grid { 
-  display:grid; 
-  gap:16px; 
-  grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); 
-}
-
-.card { 
-  background:#fff; 
-  border-radius:16px; 
-  padding:16px; 
-  box-shadow:0 6px 20px rgba(0,0,0,.08); 
-  display:flex; 
-  flex-direction:column; 
-  gap:12px; 
-  border-top: 4px solid #003366; /* subtle navy accent */
-}
-
-.card h3 { 
-  margin:0; 
-  color:#003366; /* navy headings */
-}
-
-.btn { 
-  display:inline-block; 
-  padding:10px 14px; 
-  border-radius:12px; 
-  background:#003366; /* navy button */
-  color:#fff; 
-  text-decoration:none; 
-  font-weight:600; 
-  text-align:center; 
-}
-
-.btn:hover { 
-  filter:brightness(1.08); 
-}
-
-video, iframe { 
-  width:100%; 
-  aspect-ratio:16/9; 
-  border:0; 
-  border-radius:12px; 
-}
-
-footer { 
-  text-align:center; 
-  color:#666666; /* gray for contact/footer */
-  padding:24px 16px 40px; 
-  font-size:0.9rem;
-}
-
-.divider-dots {
-  text-align:center;
-  margin: 24px 0;
-  color:#003366; /* navy skill divider dots */
-  font-size:1.2rem;
-  letter-spacing:6px;
-}
+    footer{margin:40px auto 24px;max-width:1200px;padding:0 20px;text-align:center;color:var(--gray);font-size:.94rem;}
+    footer a{color:var(--navy);}
   </style>
 </head>
 <body>
+
   <header>
     <h1>JD Maddox - Instructional Design Portfolio</h1>
-    <p>Selected Storyline modules and a short demo video.</p>
+    <p>Selected eLearning, simulations, and multimedia learning assets.</p>
   </header>
 
   <main>
     <section class="grid">
-      <!-- MODULE 1 -->
+
+      <!-- Project 1 -->
       <article class="card">
-        <h3>Module 1 — Talent Assessment Tool</h3>
-        <p>This interactive tool was used to assist leaders with talent assessment of their teams and succession planning. (variables, conditionals, verification layers, JavaScript)</p>
-        <a class="btn" href="./TalentAssessment/story.html" target="_blank" rel="noopener">Open Module 1</a>
+        <a class="thumb-link" href="https://jd-maddox.github.io/InstructionalDesignPortfolio/TalentAssessment/story.html" target="_blank" rel="noopener">
+          <img class="thumb" src="https://jd-maddox.github.io/InstructionalDesignPortfolio/Thumbnails/Module1.jpg" alt="Talent Assessment Tool thumbnail" />
+          <div class="overlay">Talent Assessment Tool</div>
+        </a>
+        <div class="content">
+          <h2 class="title">Talent Assessment Tool</h2>
+          <p class="desc">Interactive tool that assists leaders with talent assessment and succession planning. (variables; conditionals; verification layers; JavaScript)</p>
+          <div class="actions">
+            <a class="btn primary" href="https://jd-maddox.github.io/InstructionalDesignPortfolio/TalentAssessment/story.html" target="_blank" rel="noopener">View Project</a>
+          </div>
+        </div>
       </article>
 
-      <!-- MODULE 2 -->
+      <!-- Project 2 -->
       <article class="card">
-        <h3>Module 2 — Missile Command</h3>
-        <p>This module was built to showcase how strong Storyline can be when utilized creatively. (animations, motion paths, conditionals, variables, scoring)</p>
-        <a class="btn" href="./StorylineGame/story.html" target="_blank" rel="noopener">Open Module 2</a>
+        <a class="thumb-link" href="https://jd-maddox.github.io/InstructionalDesignPortfolio/StorylineGame/story.html" target="_blank" rel="noopener">
+          <img class="thumb" src="https://jd-maddox.github.io/InstructionalDesignPortfolio/Thumbnails/Module2.jpg" alt="Missile Command thumbnail" />
+          <div class="overlay">Missile Command</div>
+        </a>
+        <div class="content">
+          <h2 class="title">Missile Command</h2>
+          <p class="desc">Creative Storyline build that demonstrates animations, motion paths, conditionals, variables, and scoring.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://jd-maddox.github.io/InstructionalDesignPortfolio/StorylineGame/story.html" target="_blank" rel="noopener">View Project</a>
+          </div>
+        </div>
       </article>
 
-      <!-- MODULE 3 -->
+      <!-- Project 3 -->
       <article class="card">
-        <h3>Module 3 — Fake Band Website</h3>
-        <p>This module was built to showcase a more artistic design style and provide a slighty different use case for Storyline. (multimedia, layers, embed)</p>
-        <a class="btn" href="./StorylineMusic/story.html" target="_blank" rel="noopener">Open Module 3</a>
+        <a class="thumb-link" href="https://jd-maddox.github.io/InstructionalDesignPortfolio/StorylineMusic/story.html" target="_blank" rel="noopener">
+          <img class="thumb" src="https://jd-maddox.github.io/InstructionalDesignPortfolio/Thumbnails/Module3.jpg" alt="Fake Band Website thumbnail" />
+          <div class="overlay">Fake Band Website</div>
+        </a>
+        <div class="content">
+          <h2 class="title">Fake Band Website</h2>
+          <p class="desc">Artistic Storyline module that showcases multimedia, layered interactions, and embedded content.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://jd-maddox.github.io/InstructionalDesignPortfolio/StorylineMusic/story.html" target="_blank" rel="noopener">View Project</a>
+          </div>
+        </div>
       </article>
 
-      <!-- VIDEO -->
+      <!-- Project 4 -->
       <article class="card">
-        <h3>Fake Newscast Video</h3>
-        <p>Used as part of a 3 hour Root Cause Analysis activity at a Summit meeting to introduce a new wrinkle in the scenario. (Synthesia, Adobe Rush, Adobe Audition)</p>
-        <video controls preload="metadata">
-          <source src="./FakeNewscastVideo/Geoffrey Land Newscast.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+        <a class="thumb-link" href="https://jd-maddox.github.io/InstructionalDesignPortfolio/FakeNewscastVideo/Geoffrey%20Land%20Newscast.mp4" target="_blank" rel="noopener">
+          <img class="thumb" src="https://jd-maddox.github.io/InstructionalDesignPortfolio/Thumbnails/Video1.jpg" alt="Fake Newscast Video thumbnail" />
+          <div class="overlay">Fake Newscast Video</div>
+        </a>
+        <div class="content">
+          <h2 class="title">Fake Newscast Video</h2>
+          <p class="desc">Short video used in a Root Cause Analysis activity to introduce a scenario twist. (Synthesia; Adobe Rush; Adobe Audition)</p>
+          <div class="actions">
+            <a class="btn primary" href="https://jd-maddox.github.io/InstructionalDesignPortfolio/FakeNewscastVideo/Geoffrey%20Land%20Newscast.mp4" target="_blank" rel="noopener">View Project</a>
+          </div>
+        </div>
       </article>
+
     </section>
   </main>
 
-  <footer>© 2025 JD Maddox. All rights reserved. This portfolio and its contents may not be copied, reused, or distributed without permission.</footer>
+  <footer>
+    © 2025 JD Maddox. Portfolio content is for personal showcase only; no copying or redistribution without permission.
+    <!-- Optionally link a LICENSE file in your repo: <a href="LICENSE" target="_blank" rel="noopener">License</a> -->
+  </footer>
+
 </body>
 </html>
